@@ -50,20 +50,18 @@ int tabela(char *dicionario[],char *palavra,int k) {
 
 int main(void) {
     setlocale(LC_ALL,"pt_BR.UTF-8" );
+    SetConsoleOutputCP(CP_UTF8);  // Muda a Code Page de saída do Windows para UTF-8
+    SetConsoleCP(CP_UTF8);  // Muda a Code Page de entrada do Windows para UTF-8
+
     char palavra[25];
 
     printf("Digite uma palavra que começa com j\n");
     fgets(palavra,25,stdin);//absrove a palavra
     palavra[strcspn(palavra, "\n")] = '\0';//isso ser pra não dar bug no strlen, sem isso a palavr gato retornaria 5 carateres
-
-    //aqui a gente definirá a letra usada e o dicionário de palavras que a gente vai criar
-
     int total = sizeof(dicionario) / sizeof(dicionario[0]);
-
-
     int limite =3 ;
 
-    Resultado resultados[1014];
+    Resultado resultados[1012];
     int count = 0;
 
     for (int k = 0; k < total; k++) {
@@ -92,7 +90,15 @@ int main(void) {
 
     printf("Sugestões: [ ");
 
-    for (int k = 0; k < 10; k++) {
+    int maxSugestoes;
+
+    if (count < 10) {
+        maxSugestoes = count;
+    } else {
+        maxSugestoes = 10;
+    }
+
+    for (int k = 0; k < maxSugestoes; k++) {
         printf("%s (%d) ", resultados[k].palavra, resultados[k].distancia);
     }
     printf("]");
