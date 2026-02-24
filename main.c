@@ -56,7 +56,7 @@ int main(void) {
     char palavra[25];
 
     printf("Digite uma palavra que começa com j\n");
-    fgets(palavra,25,stdin);//absrove a palavra
+    fgets(palavra,25,stdin);//absorve a palavra
     palavra[strcspn(palavra, "\n")] = '\0';//isso ser pra não dar bug no strlen, sem isso a palavr gato retornaria 5 carateres
     int total = sizeof(dicionario) / sizeof(dicionario[0]);
     int limite =3 ;
